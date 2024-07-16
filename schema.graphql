@@ -1,0 +1,45 @@
+"""
+Quota table defines limits applied to a token, for example if token 'abc123' needs to limit 1000 requests for a 15 minute window the sample record looks like:
+```
+{
+    token: 'abc123',
+    limit: 1000,
+    timeInterval: 'minute',
+    timeIncrement: 5
+}
+```
+"""
+type Quota @table(database: "gateway") @export(name: "quota"){
+"""
+token to apply a quota to
+"""
+    token: String @primaryKey
+"""
+limit of requests over the defined time period
+"""
+    limit: Int!
+"""
+the interval of time for this quota (eg. second, minute, hour, day, etc...)
+"""
+    timeInterval: String!
+"""
+increment of time for the timeInterval
+"""
+    timeIncrement: Int!
+}
+
+
+"""
+TokenCounter table stores interval counts
+"""
+type TokenCounter @table(database: "gateway",expiration:8600) {
+"""
+multi-part Array that stores the token at index 0 and the epoch time for the interval at index 1
+"""
+    token_time: Any @primaryKey
+"""
+count of requests for the key's interval
+"""
+    counter: Long
+}
+

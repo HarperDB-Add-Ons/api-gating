@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "name": "@harperdb/api-gating",
+  "version": "1.0.0",
+  "description": "This repo gives example data model and logic showing how to leverage HarperDB's atomic counters to rate limit requests over a defined sliding window.",
+  "main": "resources.js",
+  "author": "HarperDB, Inc.",
+  "license": "MIT"
+}
